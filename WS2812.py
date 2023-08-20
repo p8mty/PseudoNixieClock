@@ -21,6 +21,12 @@ class WS2812:
             self.strip.setPixelColor(i, Color(color[i][0],color[i][1],color[i][2]))	
             self.strip.show()
             # time.sleep(0.1)
+ 
+    def SetRGBall(self, color):
+        for i in range(0,6):
+            self.strip.setPixelColor(i, Color(color[0],color[1],color[2]))
+            self.strip.show()
+
             
     def SetPixelColor(self, i, color):
         self.strip.setPixelColor(i, Color(color[0],color[1],color[2]))	

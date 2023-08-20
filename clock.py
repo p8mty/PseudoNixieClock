@@ -39,6 +39,7 @@ rgb = WS2812.WS2812()
 
 CL = {'White':[40,40,40], 'Red':[40,0,0], 'Green':[0,255,0], 'Blue':[0,0,40], 'Yellow':[255,255,0], 'Cyan':[0,255,255], 'Purple':[255,0,255], 'Black':[0,0,0]}
 rgbColor = [CL['Red'],CL['Red'],CL['Red'],CL['Red'],CL['Red'],CL['Red']]
+RGBday = CL["Blue"]
 
 lastdigit = [-1,-1,-1,-1,-1,-1]
 day2 = 0
@@ -255,24 +256,28 @@ def left_button_callback(channel):
     coloursel+=1
     if coloursel > 4:
        coloursel = 1
-    print(coloursel)
     if  coloursel == 1:
-       oncolday = "#80c0ff"
+       oncolday = "#80c0ff" # Blue
        offcolday = "#3a2f0b"
+       RGBday = CL["Blue"]
     elif coloursel == 2:
-       oncolday = "#e00000"
+       oncolday = "#e00000" # Red
        offcolday = "#3a2f0b"
+       RGBday = CL["Red"]
     elif coloursel == 3:
-       oncolday = "#00e000"
+       oncolday = "#00e000" # Green
        offcolday = "#3a2f0b"
+       RGBday = CL["Green"]
     elif coloursel == 4:
-       oncolday = "#e0e0e0"
+       oncolday = "#e0e0e0" # White
        offcolday = "#3a2f0b"
+       RGBday = CL["White"]
     oncol = oncolday
     offcol = offcolday
     lastdigit = [-1,-1,-1,-1,-1,-1]
     day2 = 0
     UpdateDisp()
+    rgb.SetRGBall(RGBday)
     print("left button pressed")
 
 def right_button_callback(channel):
@@ -337,21 +342,21 @@ while(1):
       if (cc!=1):
        oncol = "#c00000"
        offcol = "#201010"
-       rgbColor = [CL['Black'],CL['Black'],CL['Black'],CL['Black'],CL['Black'],CL['Black']]
+#       rgbColor = [CL['Black'],CL['Black'],CL['Black'],CL['Black'],CL['Black'],CL['Black']]
        lastdigit = [-1,-1,-1,-1,-1,-1]
        day2 = 0
-       rgb.SetRGB(rgbColor)
+       rgb.SetRGBall("Black")
        lcd.SetLcdBlackLight(2)
        cc=1
     elif (hour<22):
       if (cc!=2):
        oncol = oncolday
        offcol = offcolday
-       rgbColor = [CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue']]
+#       rgbColor = [CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue'],CL['Blue']]
        lastdigit = [-1,-1,-1,-1,-1,-1]
        day2 = 0
        lcd.SetLcdBlackLight(8)
-       rgb.SetRGB(rgbColor)
+       rgb.SetRGBall(RGBday)
        cc=2
     else:
       if (cc!=3):
